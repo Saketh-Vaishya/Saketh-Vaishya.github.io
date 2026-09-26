@@ -1,0 +1,13 @@
+# secrets & private notes — never publish
+.env
+CONTENT_NOTES.md
+CLAUDE.md
+generate_images.py
+
+# large source files (videos are already exported to assets/videos)
+*.pptx
+Saketh Varma - Portfolio.html
+
+# generated images not used on the site yet
+assets/*.png
+assets/doodles/

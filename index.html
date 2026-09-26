@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saketh Vaishya — Robotics Engineer</title>
+  <meta name="description" content="Portfolio of Saketh Vaishya — robotics engineer specializing in autonomous systems, computer vision, and ROS 2.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Patrick+Hand&family=Nunito:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #FBF3E2;
+      --dot:   #e7dcbf;
+      --navy:  #16314B;
+      --blue:  #1F9FE0;
+      --red:   #E94B3C;
+      --yellow:#FFC93C;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      color: var(--navy);
+      background: var(--cream);
+      background-image: radial-gradient(var(--dot) 1.4px, transparent 1.4px);
+      background-size: 26px 26px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Animations ── */
+    @keyframes floaty {
+      0%,100% { transform: translateY(0) rotate(-1deg); }
+      50%      { transform: translateY(-14px) rotate(1deg); }
+    }
+    @keyframes blink {
+      0%,92%,100% { transform: scaleY(1); }
+      96%          { transform: scaleY(0.1); }
+    }
+    @keyframes glow {
+      0%,100% { box-shadow: 0 0 0 0 rgba(233,75,60,.55); }
+      50%      { box-shadow: 0 0 14px 5px rgba(233,75,60,.55); }
+    }
+
+    /* ── Layout ── */
+    .wrap {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: clamp(24px,5vw,56px) clamp(16px,4vw,40px) 72px;
+    }
+
+    /* ── Header ── */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 14px;
+      padding: 14px clamp(16px,4vw,40px);
+      background: rgba(251,243,226,.88);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border-bottom: 2.5px solid var(--navy);
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--navy);
+    }
+    .logo-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: var(--blue); border: 2.5px solid var(--navy);
+      box-shadow: 3px 3px 0 var(--navy);
+      display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
+    }
+    .logo-icon span {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--yellow); border: 2px solid var(--navy);
+      display: block;
+    }
+    .logo-name {
+      font-family: 'Caveat', cursive; font-weight: 700;
+      font-size: 30px; line-height: 1;
+    }
+
+    /* ── Mode Toggle ── */
+    .mode-toggle {
+      position: relative; display: flex; align-items: center; padding: 5px;
+      background: var(--blue); border: 2.5px solid var(--navy);
+      border-radius: 999px; box-shadow: 3px 3px 0 var(--navy);
+    }
+    .toggle-thumb {
+      position: absolute; top: 5px; left: 5px;
+      width: calc(50% - 5px); height: calc(100% - 10px);
+      background: var(--white); border: 2px solid var(--navy);
+      border-radius: 999px; pointer-events: none;
+      transition: transform .32s cubic-bezier(.34,1.56,.64,1);
+    }
+    body.personal-mode .toggle-thumb { transform: translateX(100%); }
+    .toggle-btn {
+      position: relative; z-index: 1; border: none; background: transparent;
+      cursor: pointer; font-family: 'Nunito', sans-serif; font-weight: 800;
+      font-size: 15px; color: var(--navy);
+      padding: 8px clamp(14px,3vw,24px); border-radius: 999px;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      display: flex; flex-wrap: wrap; align-items: center;
+      gap: clamp(24px,5vw,56px); margin-bottom: clamp(40px,7vw,80px);
+    }
+    .hero-text { flex: 1 1 320px; min-width: 280px; }
+
+    .role-badge {
+      display: inline-block;
+      font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700;
+      letter-spacing: .5px; color: var(--white); background: var(--red);
+      border: 2.5px solid var(--navy); border-radius: 999px;
+      padding: 5px 14px; box-shadow: 3px 3px 0 var(--navy);
+      transform: rotate(-2deg); margin-bottom: 18px;
+    }
+    .hero-h1 {
+      font-family: 'Caveat', cursive; font-weight: 700;
+      font-size: clamp(48px,9vw,84px); line-height: .95; margin-bottom: 14px;
+    }
+    .hero-h1 em { font-style: normal; color: var(--blue); }
+    .hero-tagline {
+      font-size: clamp(17px,2.4vw,20px); line-height: 1.55; max-width: 30em;
+      margin-bottom: 26px; font-weight: 600; color: #3a546b;
+    }
+    .ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+
+    /* ── Buttons ── */
+    .btn {
+      text-decoration: none; font-weight: 800; font-size: 16px;
+      border: 2.5px solid var(--navy); border-radius: 14px; padding: 13px 22px;
+      transition: transform .12s, box-shadow .12s; cursor: pointer; display: inline-block;
+    }
+    .btn:hover { transform: translate(-2px,-2px); box-shadow: 7px 8px 0 var(--navy); }
+    .btn-blue   { color: var(--white); background: var(--blue);  box-shadow: 4px 4px 0 var(--navy); }
+    .btn-yellow { color: var(--navy);  background: var(--yellow); box-shadow: 4px 4px 0 var(--navy); }
+    .btn-dark   { color: var(--white); background: var(--navy);  box-shadow: 4px 4px 0 var(--blue); border-color: var(--navy); }
+    .btn-white  { color: var(--navy);  background: var(--white); box-shadow: 4px 4px 0 var(--navy); }
+
+    /* ── Hero Visual ── */
+    .hero-visual {
+      flex: 1 1 280px; min-width: 240px;
+      display: flex; justify-content: center; position: relative;
+    }
+
+    /* Photo placeholder */
+    .photo-wrap {
+      width: 240px; height: 280px; border-radius: 24px;
+      border: 2.5px solid var(--navy); box-shadow: 6px 6px 0 var(--navy);
+      background: var(--white);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 12px; overflow: hidden;
+    }
+    .photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .photo-initials {
+      font-family: 'Caveat', cursive; font-size: 80px; font-weight: 700;
+      color: var(--blue); line-height: 1;
+    }
+    .photo-label {
+      font-family: 'Space Mono', monospace; font-size: 11px; color: #8a7c5d;
+      background: var(--cream); border: 2px dashed #b9ac8a;
+      border-radius: 6px; padding: 4px 8px;
+    }
+
+    /* Mascot */
+    .mascot-wrap {
+      padding-top: 52px; position: relative;
+      animation: floaty 5s ease-in-out infinite;
+    }
+    .bubble {
+      position: absolute; top: 0; left: 50%; transform: translateX(-30%);
+      background: var(--white); border: 2.5px solid var(--navy);
+      border-radius: 16px; box-shadow: 3px 3px 0 var(--navy);
+      padding: 9px 14px; font-family: 'Patrick Hand', cursive;
+      font-size: 17px; white-space: nowrap; z-index: 3;
+    }
+    .ant-stick {
+      position: absolute; top: 18px; left: 50%; transform: translateX(-50%);
+      width: 5px; height: 34px; background: var(--navy); border-radius: 3px;
+    }
+    .ant-ball {
+      position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
+      width: 18px; height: 18px; border-radius: 50%;
+      background: var(--red); border: 2.5px solid var(--navy);
+      animation: glow 2.2s ease-in-out infinite;
+    }
+    .m-head {
+      width: 210px; height: 190px;
+      background: linear-gradient(160deg, #37b1ec, var(--blue));
+      border: 3px solid var(--navy); border-radius: 46px;
+      box-shadow: 7px 9px 0 var(--navy);
+      position: relative; display: flex; align-items: center; justify-content: center;
+    }
+    .m-ear {
+      position: absolute; width: 18px; height: 52px;
+      background: var(--blue); border: 3px solid var(--navy); border-radius: 10px; top: 62px;
+    }
+    .m-ear.l { left: -14px; } .m-ear.r { right: -14px; }
+    .m-face {
+      width: 150px; height: 120px; background: #FBF8EF;
+      border: 3px solid var(--navy); border-radius: 34px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+    }
+    .m-eyes { display: flex; gap: 26px; }
+    .m-eye {
+      width: 20px; height: 26px; background: var(--navy); border-radius: 50%;
+      animation: blink 4s infinite;
+    }
+    .m-cheeks { display: flex; gap: 54px; margin-top: -2px; }
+    .m-cheek { width: 16px; height: 9px; background: #F7A9B0; border-radius: 50%; }
+    .m-mouth {
+      width: 36px; height: 18px; border: 3px solid var(--navy);
+      border-top: none; border-radius: 0 0 36px 36px; margin-top: 2px;
+    }
+    .m-bell {
+      position: absolute; left: 50%; bottom: -18px; transform: translateX(-50%);
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--yellow); border: 3px solid var(--navy);
+      box-shadow: 3px 3px 0 var(--navy);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; z-index: 2;
+    }
+    .m-bell-bar { width: 24px; height: 3px; background: var(--navy); border-radius: 2px; }
+    .m-bell-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--navy); }
+
+    /* ── Mode visibility ── */
+    .pro-only     { display: block; }
+    .personal-only{ display: none; }
+    .mascot-col   { display: none; }
+    .photo-col    { display: flex; justify-content: center; }
+
+    body.personal-mode .pro-only      { display: none; }
+    body.personal-mode .personal-only { display: block; }
+    body.personal-mode .mascot-col    { display: flex; justify-content: center; }
+    body.personal-mode .photo-col     { display: none; }
+
+    /* ── Section title ── */
+    .sh {
+      font-family: 'Caveat', cursive; font-weight: 700;
+      font-size: 34px; margin-bottom: 16px;
+    }
+
+    /* ── Generic card ── */
+    .card {
+      background: var(--white); border: 2.5px solid var(--navy);
+      border-radius: 22px; box-shadow: 6px 6px 0 var(--navy);
+      padding: clamp(22px,4vw,36px); margin-bottom: 36px;
+    }
+    .card-h {
+      font-family: 'Caveat', cursive; font-size: 38px; font-weight: 700; margin-bottom: 8px;
+    }
+    .card-p { font-size: 18px; line-height: 1.6; font-weight: 600; color: #3a546b; max-width: 48em; }
+
+    /* ── Skills ── */
+    .skills { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 42px; }
+    .skill {
+      font-family: 'Space Mono', monospace; font-weight: 700; font-size: 14px;
+      background: var(--white); border: 2.5px solid var(--navy);
+      border-radius: 999px; box-shadow: 2px 2px 0 var(--navy); padding: 8px 15px;
+    }
+
+    /* ── Projects grid ── */
+    .projects {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(270px,1fr));
+      gap: 22px; margin-bottom: 46px;
+    }
+    .pcard {
+      background: var(--white); border: 2.5px solid var(--navy);
+      border-radius: 20px; box-shadow: 5px 5px 0 var(--navy);
+      overflow: hidden; display: flex; flex-direction: column;
+      transition: transform .14s, box-shadow .14s;
+    }
+    .pcard:hover { transform: translate(-2px,-2px); box-shadow: 8px 8px 0 var(--navy); }
+    .pcard.wip { opacity: .88; }
+    .pthumb {
+      aspect-ratio: 16 / 10; width: 100%; border: none; border-bottom: 2.5px solid var(--navy);
+      background: var(--navy); padding: 0; cursor: pointer; overflow: hidden;
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .pthumb video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .play-chip {
+      position: absolute; left: 10px; bottom: 10px;
+      font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700;
+      color: var(--navy); background: var(--yellow); border: 2px solid var(--navy);
+      border-radius: 999px; padding: 4px 10px; box-shadow: 2px 2px 0 var(--navy);
+      transition: transform .12s;
+    }
+    .pthumb:hover .play-chip { transform: scale(1.06) rotate(-2deg); }
+    .pcard.extra { display: none; }
+    .projects.show-all .pcard.extra { display: flex; }
+    .more-wrap { text-align: center; margin: -22px 0 46px; }
+
+    /* ── Video lightbox ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 100; display: none;
+      align-items: center; justify-content: center; padding: 16px;
+      background: rgba(22,49,75,.82);
+    }
+    .lightbox.open { display: flex; }
+    .lb-box {
+      background: var(--cream); border: 2.5px solid var(--navy); border-radius: 22px;
+      box-shadow: 7px 7px 0 var(--navy); padding: 14px; width: min(920px, 100%);
+      max-height: calc(100vh - 32px); display: flex; flex-direction: column; gap: 10px;
+    }
+    .lb-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .lb-title { font-family: 'Caveat', cursive; font-weight: 700; font-size: 30px; line-height: 1; }
+    .lb-close {
+      border: 2.5px solid var(--navy); background: var(--red); color: var(--white);
+      font-weight: 900; font-size: 18px; width: 38px; height: 38px; border-radius: 12px;
+      box-shadow: 3px 3px 0 var(--navy); cursor: pointer; flex: 0 0 auto;
+    }
+    .lb-box video {
+      width: 100%; max-height: calc(100vh - 170px); background: var(--navy);
+      border: 2.5px solid var(--navy); border-radius: 14px; object-fit: contain;
+    }
+    .lb-clips { display: flex; gap: 8px; flex-wrap: wrap; }
+    .lb-clip {
+      font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700;
+      border: 2px solid var(--navy); border-radius: 999px; padding: 5px 12px;
+      background: var(--white); color: var(--navy); cursor: pointer;
+    }
+    .lb-clip[aria-pressed="true"] { background: var(--blue); color: var(--white); }
+    .wip-tag {
+      position: absolute; top: 10px; right: 10px;
+      font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700;
+      color: var(--white); background: var(--red); border: 2px solid var(--navy);
+      border-radius: 999px; padding: 3px 8px;
+    }
+    .pbody { padding: 18px 18px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .ptitle { font-weight: 900; font-size: 19px; }
+    .pdesc  { font-size: 15px; line-height: 1.5; font-weight: 600; color: #46607a; flex: 1; }
+    .ptags  { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+    .ptag   { font-family: 'Space Mono', monospace; font-size: 11px; font-weight: 700; color: var(--blue); }
+
+    /* ── Experience ── */
+    .exp-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 10px; }
+    .exp {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px;
+      background: var(--white); border: 2.5px solid var(--navy);
+      border-radius: 16px; box-shadow: 4px 4px 0 var(--navy); padding: 16px 20px;
+    }
+    .exp-when {
+      font-family: 'Space Mono', monospace; font-weight: 700; font-size: 13px;
+      color: var(--red); flex: 0 0 auto; min-width: 120px;
+    }
+    .exp-info { flex: 1 1 240px; }
+    .exp-role { font-weight: 900; font-size: 17px; }
+    .exp-org  { font-size: 15px; font-weight: 600; color: #46607a; }
+    .exp-pts  { margin-top: 8px; padding-left: 18px; font-size: 15px; line-height: 1.55; font-weight: 600; color: #46607a; }
+    .exp-watch {
+      margin-top: 10px; font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700;
+      border: 2px solid var(--navy); border-radius: 999px; padding: 5px 12px;
+      background: var(--yellow); color: var(--navy); box-shadow: 2px 2px 0 var(--navy); cursor: pointer;
+    }
+
+    /* ── Personal: yellow about ── */
+    .pers-about {
+      background: var(--yellow); border: 2.5px solid var(--navy);
+      border-radius: 22px; box-shadow: 6px 6px 0 var(--navy);
+      padding: clamp(22px,4vw,36px); margin-bottom: 36px;
+    }
+    .pers-about .card-p { color: #5a4410; font-weight: 700; }
+
+    /* ── Loves grid ── */
+    .loves { display: grid; grid-template-columns: repeat(auto-fit,minmax(210px,1fr)); gap: 18px; margin-bottom: 46px; }
+    .love {
+      background: var(--white); border: 2.5px solid var(--navy);
+      border-radius: 18px; box-shadow: 5px 5px 0 var(--navy); padding: 20px;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .love-icon {
+      width: 50px; height: 50px; border-radius: 14px; background: var(--blue);
+      border: 2.5px solid var(--navy); display: flex; align-items: center;
+      justify-content: center; font-size: 26px;
+    }
+    .love-title { font-weight: 900; font-size: 18px; margin-top: 4px; }
+    .love-desc  { font-size: 15px; line-height: 1.5; font-weight: 600; color: #46607a; }
+
+    /* ── Doodle wall ── */
+    .doodles { display: grid; grid-template-columns: repeat(auto-fit,minmax(160px,1fr)); gap: 20px; margin-bottom: 46px; }
+    .doodle {
+      background: var(--white); border: 2.5px solid var(--navy);
+      box-shadow: 4px 4px 0 var(--navy); padding: 10px 10px 28px;
+    }
+    .doodle:nth-child(1) { transform: rotate(-3deg); }
+    .doodle:nth-child(2) { transform: rotate(2deg); }
+    .doodle:nth-child(3) { transform: rotate(-1.5deg); }
+    .doodle:nth-child(4) { transform: rotate(3deg); }
+    .doodle-img {
+      height: 120px;
+      background-image: repeating-linear-gradient(45deg,#e9e0cb 0 11px,#f4ecd9 11px 22px);
+      border: 2px dashed #b9ac8a; display: flex; align-items: center; justify-content: center;
+    }
+    .doodle-img span { font-family: 'Space Mono', monospace; font-size: 11px; color: #8a7c5d; }
+    .doodle-caption { font-family: 'Patrick Hand', cursive; text-align: center; margin-top: 8px; font-size: 16px; }
+
+    /* ── Right now ── */
+    .right-now {
+      background: var(--blue); border: 2.5px solid var(--navy);
+      border-radius: 22px; box-shadow: 6px 6px 0 var(--navy);
+      padding: clamp(22px,4vw,36px); color: var(--white);
+    }
+    .right-now .sh { color: var(--white); margin-bottom: 12px; }
+    .right-now ul { padding-left: 22px; font-size: 17px; line-height: 1.9; font-weight: 700; }
+
+    /* ── Why Doraemon ── */
+    #why {
+      margin-top: clamp(48px,8vw,90px);
+      background: var(--white); border: 2.5px solid var(--navy);
+      border-radius: 28px; box-shadow: 7px 7px 0 var(--navy);
+      padding: clamp(24px,5vw,48px); position: relative; overflow: hidden;
+    }
+    /* the 4D pocket */
+    #why::after {
+      content: ""; position: absolute; right: clamp(-40px,-3vw,-20px); bottom: -70px;
+      width: 220px; height: 140px; background: var(--cream);
+      border: 2.5px solid var(--navy); border-radius: 0 0 110px 110px;
+      opacity: .7; pointer-events: none;
+    }
+    .why-kicker {
+      font-family: 'Space Mono', monospace; font-size: 13px; font-weight: 700;
+      color: var(--red); margin-bottom: 8px;
+    }
+    .why-h {
+      font-family: 'Caveat', cursive; font-weight: 700;
+      font-size: clamp(38px,6.5vw,62px); line-height: 1; margin-bottom: 16px; max-width: 16em;
+    }
+    .why-h em { font-style: normal; color: var(--blue); }
+    .why-p { font-size: 18px; line-height: 1.65; font-weight: 600; color: #3a546b; max-width: 44em; margin-bottom: 14px; }
+    .gadgets {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 16px; margin: 26px 0 26px; position: relative; z-index: 1;
+    }
+    .gadget {
+      background: var(--cream); border: 2.5px dashed var(--navy); border-radius: 18px;
+      padding: 16px 18px; display: flex; flex-direction: column; gap: 6px;
+    }
+    .gadget:nth-child(odd)  { transform: rotate(-1deg); }
+    .gadget:nth-child(even) { transform: rotate(1deg); }
+    .gadget-name { font-family: 'Patrick Hand', cursive; font-size: 20px; }
+    .gadget-arrow { font-family: 'Space Mono', monospace; font-size: 12px; font-weight: 700; color: var(--blue); }
+    .gadget-real { font-weight: 800; font-size: 16px; }
+    .why-sign {
+      font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(26px,4vw,34px);
+      color: var(--blue); position: relative; z-index: 1;
+    }
+
+    /* ── Contact ── */
+    #contact { margin-top: clamp(48px,8vw,90px); text-align: center; }
+    .contact-h {
+      font-family: 'Caveat', cursive; font-size: clamp(36px,6vw,56px);
+      font-weight: 700; margin-bottom: 6px;
+    }
+    .contact-sub { font-size: 17px; font-weight: 600; color: #3a546b; margin-bottom: 26px; }
+    .contact-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+    .footer-note {
+      font-family: 'Patrick Hand', cursive; font-size: 15px;
+      color: #8a7c5d; margin-top: 38px;
+    }
+
+    /* ── Mobile tweaks ── */
+    @media (max-width: 500px) {
+      .projects { grid-template-columns: 1fr; }
+      .doodles  { grid-template-columns: repeat(2,1fr); }
+      .logo-name { font-size: 24px; }
+      #why::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header>
+  <a class="logo" href="#">
+    <div class="logo-icon"><span></span></div>
+    <span class="logo-name">Saketh Vaishya</span>
+  </a>
+  <div class="mode-toggle" role="group" aria-label="Switch portfolio mode">
+    <div class="toggle-thumb" aria-hidden="true"></div>
+    <button class="toggle-btn" id="btn-pro"      onclick="setMode('pro')"      aria-pressed="true">Professional</button>
+    <button class="toggle-btn" id="btn-personal" onclick="setMode('personal')" aria-pressed="false">Personal</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ═══════════════ HERO ═══════════════ -->
+  <section id="hero">
+    <div class="hero-text">
+      <div class="role-badge">// robotics engineer</div>
+      <h1 class="hero-h1">Hi, I'm Saketh —<br>I build robots <em>that think.</em></h1>
+      <p class="hero-tagline">By day I teach machines to see, move, and make decisions. By night I'm sketching gadgets, strumming guitar, and re-watching the cartoons that got me into this in the first place.</p>
+      <div class="ctas">
+        <a href="assets/resume.pdf" class="btn btn-blue" download>Download résumé ↓</a>
+        <a href="#contact" class="btn btn-yellow">Say hi ✦</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <!-- Professional: photo (placeholder until image provided) -->
+      <div class="photo-col">
+        <div class="photo-wrap">
+          <!-- TODO: replace these two lines with <img src="assets/photo.jpg" alt="Saketh Vaishya"> -->
+          <div class="photo-initials">SV</div>
+          <div class="photo-label">photo coming soon</div>
+        </div>
+      </div>
+
+      <!-- Personal: Doraemon-style mascot -->
+      <div class="mascot-col">
+        <div class="mascot-wrap">
+          <div class="bubble">Yay, the fun side! ✦</div>
+          <div class="ant-stick"></div>
+          <div class="ant-ball"></div>
+          <div class="m-head">
+            <div class="m-ear l"></div>
+            <div class="m-ear r"></div>
+            <div class="m-face">
+              <div class="m-eyes">
+                <div class="m-eye"></div>
+                <div class="m-eye"></div>
+              </div>
+              <div class="m-cheeks">
+                <div class="m-cheek"></div>
+                <div class="m-cheek"></div>
+              </div>
+              <div class="m-mouth"></div>
+            </div>
+            <div class="m-bell">
+              <div class="m-bell-bar"></div>
+              <div class="m-bell-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ PROFESSIONAL ═══════════════ -->
+  <div class="pro-only">
+
+    <div class="card">
+      <div class="card-h">What I do</div>
+      <p class="card-p">I design and ship autonomous systems end-to-end — perception, planning and control. Lately that means teleoperation systems, manipulation policies trained in Isaac Lab, and digital twins that close the sim-to-real gap. I'm happiest where messy real-world sensor data meets clean, reliable code, from soldering a board to deploying a full ROS 2 stack.</p>
+    </div>
+
+    <div class="sh">Toolbox 🔧</div>
+    <div class="skills">
+      <span class="skill">ROS 2</span><span class="skill">MoveIt 2</span><span class="skill">Isaac Sim</span>
+      <span class="skill">Isaac Lab</span><span class="skill">Gazebo</span><span class="skill">RViz</span>
+      <span class="skill">Python</span><span class="skill">C++</span><span class="skill">PyTorch</span>
+      <span class="skill">OpenCV</span><span class="skill">RL / PPO</span><span class="skill">ACT</span>
+      <span class="skill">Diffusion Policy</span><span class="skill">Imitation Learning</span><span class="skill">EtherCAT</span>
+      <span class="skill">MODBUS</span><span class="skill">STM32</span><span class="skill">SolidWorks</span>
+      <span class="skill">Fusion 360</span><span class="skill">Docker</span><span class="skill">GCP</span>
+      <span class="skill">FastAPI</span><span class="skill">Linux</span>
+    </div>
+
+    <div class="sh">Gadgets I've built ⚙️</div>
+    <div class="projects" id="projects">
+
+      <div class="pcard">
+        <button class="pthumb" data-title="Alice — AI Robo Bartender" data-clips="alice" aria-label="Play Alice — AI Robo Bartender video">
+          <video muted loop playsinline preload="none" poster="assets/videos/alice.jpg" data-src="assets/videos/alice.mp4"></video>
+          <span class="play-chip">watch ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Alice — AI Robo Bartender</div>
+          <p class="pdesc">A robot agent that chats with you through OpenAI LLMs wired into ROS, then mixes your drink. Runs on GCP with Pub/Sub for robot-state monitoring, MoveIt 2 + OctoMap for collision-aware pouring, and a FastAPI bridge to the outside world.</p>
+          <div class="ptags">
+            <span class="ptag">#ROS2</span><span class="ptag">#OpenAI</span><span class="ptag">#MoveIt2</span><span class="ptag">#GCP</span><span class="ptag">#FastAPI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <button class="pthumb" data-title="ScrewQC — Robotic Inspection" data-clips="screwqc" aria-label="Play ScrewQC — Robotic Inspection video">
+          <video muted loop playsinline preload="none" poster="assets/videos/screwqc.jpg" data-src="assets/videos/screwqc.mp4"></video>
+          <span class="play-chip">watch ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">ScrewQC — Robotic Inspection</div>
+          <p class="pdesc">A vision-assisted robot that inspects screws to 0.01 mm precision. A Doosan A0509 over MODBUS, an OpenCV eigenvector trick to localise each screw, YOLOv8 for detection, and Gazebo + MoveIt for motion planning.</p>
+          <div class="ptags">
+            <span class="ptag">#OpenCV</span><span class="ptag">#YOLOv8</span><span class="ptag">#Doosan</span><span class="ptag">#MODBUS</span><span class="ptag">#Gazebo</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <button class="pthumb" data-title="Isaac Sim Policy — Inference" data-clips="isaac-policy,isaac-policy-2" aria-label="Play Isaac Sim Policy — Inference video">
+          <video muted loop playsinline preload="none" poster="assets/videos/isaac-policy.jpg" data-src="assets/videos/isaac-policy.mp4"></video>
+          <span class="play-chip">watch 2 clips ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Isaac Sim Policy — Inference</div>
+          <p class="pdesc">Manipulation policies (ACT, Diffusion Policy) trained entirely inside NVIDIA Isaac Lab with parallel, manager-based environments — then run for real. Part of the HIR teleoperation system.</p>
+          <div class="ptags">
+            <span class="ptag">#IsaacLab</span><span class="ptag">#ACT</span><span class="ptag">#DiffusionPolicy</span><span class="ptag">#Sim2Real</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <button class="pthumb" data-title="Real2Sim — Digital Twin" data-clips="real2sim" aria-label="Play Real2Sim — Digital Twin video">
+          <video muted loop playsinline preload="none" poster="assets/videos/real2sim.jpg" data-src="assets/videos/real2sim.mp4"></video>
+          <span class="play-chip">watch ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Real2Sim — Digital Twin</div>
+          <p class="pdesc">A digital twin of our robot cloned into Isaac Sim, so we can generate synthetic training data instead of paying for expensive real-world collection.</p>
+          <div class="ptags">
+            <span class="ptag">#IsaacSim</span><span class="ptag">#DigitalTwin</span><span class="ptag">#SyntheticData</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard wip">
+        <button class="pthumb" data-title="RL with PPO — Isaac Lab" data-clips="rl-ppo,rl-ppo-2" aria-label="Play RL with PPO — Isaac Lab video">
+          <video muted loop playsinline preload="none" poster="assets/videos/rl-ppo.jpg" data-src="assets/videos/rl-ppo.mp4"></video>
+          <span class="play-chip">watch 2 clips ▶</span>
+          <span class="wip-tag">IN PROGRESS</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">RL with PPO — Isaac Lab</div>
+          <p class="pdesc">Teaching a custom-designed dexterous robotic hand in-hand manipulation with PPO in Isaac Lab. Currently at a 64% success rate and climbing.</p>
+          <div class="ptags">
+            <span class="ptag">#IsaacLab</span><span class="ptag">#PPO</span><span class="ptag">#RL</span><span class="ptag">#DexterousHand</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard">
+        <button class="pthumb" data-title="Canis — Robot Dog" data-clips="canis" aria-label="Play Canis — Robot Dog video">
+          <video muted loop playsinline preload="none" poster="assets/videos/canis.jpg" data-src="assets/videos/canis.mp4"></video>
+          <span class="play-chip">watch ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Canis — Robot Dog</div>
+          <p class="pdesc">A quadruped robot (canis = Latin for dog) with its own legged-locomotion stack. Equal parts engineering and weekend obsession.</p>
+          <div class="ptags">
+            <span class="ptag">#Quadruped</span><span class="ptag">#Locomotion</span><span class="ptag">#ROS2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard extra">
+        <button class="pthumb" data-title="Robo-Artist" data-clips="robo-artist" aria-label="Play Robo-Artist video">
+          <video muted loop playsinline preload="none" poster="assets/videos/robo-artist.jpg" data-src="assets/videos/robo-artist.mp4"></video>
+          <span class="play-chip">watch ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Robo-Artist</div>
+          <p class="pdesc">A robot arm that turns images into stroke plans and draws them — where motion planning meets a bit of creative expression.</p>
+          <div class="ptags">
+            <span class="ptag">#RobotArm</span><span class="ptag">#PathPlanning</span><span class="ptag">#CreativeAI</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard extra">
+        <button class="pthumb" data-title="Vision-Based TeleOperation" data-clips="vision-teleop" aria-label="Play Vision-Based TeleOperation video">
+          <video muted loop playsinline preload="none" poster="assets/videos/vision-teleop.jpg" data-src="assets/videos/vision-teleop.mp4"></video>
+          <span class="play-chip">watch ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Vision-Based TeleOperation</div>
+          <p class="pdesc">A motion-capture algorithm that lets plain hand motion drive a robot — no gloves, no extra hardware, just a camera. Core project of the HIR team.</p>
+          <div class="ptags">
+            <span class="ptag">#ComputerVision</span><span class="ptag">#TeleOp</span><span class="ptag">#MotionCapture</span><span class="ptag">#ROS2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard extra">
+        <button class="pthumb" data-title="Teleoperative Glove" data-clips="teleop-glove,teleop-glove-2" aria-label="Play Teleoperative Glove video">
+          <video muted loop playsinline preload="none" poster="assets/videos/teleop-glove.jpg" data-src="assets/videos/teleop-glove.mp4"></video>
+          <span class="play-chip">watch 2 clips ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Teleoperative Glove</div>
+          <p class="pdesc">A sensor-packed glove that captures the operator's hand pose and streams it to the robot, making teleoperation as natural as putting on a glove.</p>
+          <div class="ptags">
+            <span class="ptag">#Embedded</span><span class="ptag">#Sensors</span><span class="ptag">#TeleOp</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard extra">
+        <button class="pthumb" data-title="Custom Robotic Gripper" data-clips="gripper" aria-label="Play Custom Robotic Gripper video">
+          <video muted loop playsinline preload="none" poster="assets/videos/gripper.jpg" data-src="assets/videos/gripper.mp4"></video>
+          <span class="play-chip">watch ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Custom Robotic Gripper</div>
+          <p class="pdesc">A custom gripper with its own ROS packages for simulation in Gazebo Classic and a MoveIt Setup Assistant config for planning and control.</p>
+          <div class="ptags">
+            <span class="ptag">#ROS2</span><span class="ptag">#Gazebo</span><span class="ptag">#MoveIt</span><span class="ptag">#CAD</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard extra">
+        <button class="pthumb" data-title="Human Safety Velocity Control" data-clips="safety-velocity" aria-label="Play Human Safety Velocity Control video">
+          <video muted loop playsinline preload="none" poster="assets/videos/safety-velocity.jpg" data-src="assets/videos/safety-velocity.mp4"></video>
+          <span class="play-chip">watch ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">Human Safety Velocity Control</div>
+          <p class="pdesc">A safety layer for shared workspaces: when a person steps into the robot's space, it smoothly slows down or stops.</p>
+          <div class="ptags">
+            <span class="ptag">#Safety</span><span class="ptag">#ControlSystems</span><span class="ptag">#ROS2</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="pcard extra">
+        <button class="pthumb" data-title="RMPFlow + Collision Avoidance" data-clips="rmpflow,rmpflow-2" aria-label="Play RMPFlow + Collision Avoidance video">
+          <video muted loop playsinline preload="none" poster="assets/videos/rmpflow.jpg" data-src="assets/videos/rmpflow.mp4"></video>
+          <span class="play-chip">watch 2 clips ▶</span>
+        </button>
+        <div class="pbody">
+          <div class="ptitle">RMPFlow + Collision Avoidance</div>
+          <p class="pdesc">RMPFlow integrated with Isaac Sim and MoveIt 2 for smooth, reactive, collision-aware arm motion in cluttered scenes.</p>
+          <div class="ptags">
+            <span class="ptag">#RMPFlow</span><span class="ptag">#IsaacSim</span><span class="ptag">#MoveIt2</span>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects -->
+    <div class="more-wrap">
+      <button class="btn btn-white" id="more-btn" onclick="toggleProjects()" aria-expanded="false">Pull more gadgets from the pocket ↓</button>
+    </div>
+
+    <div class="sh">The road so far 🛣️</div>
+    <div class="exp-list">
+      <div class="exp">
+        <span class="exp-when">May 2024 – Present</span>
+        <div class="exp-info">
+          <div class="exp-role">Team Lead of Robotics — HIR</div>
+          <div class="exp-org">Techolution · Hyderabad</div>
+          <ul class="exp-pts">
+            <li>Built a motion-capture teleoperation algorithm — hand motion drives robots with no extra hardware</li>
+            <li>Trained ACT and Diffusion Policy in Isaac Lab with parallel, manager-based environments</li>
+            <li>Integrated RMPFlow with Isaac Sim + MoveIt 2; built a digital twin for synthetic data</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp">
+        <span class="exp-when">Nov 2023 – May 2024</span>
+        <div class="exp-info">
+          <div class="exp-role">Associate Robotics Engineer</div>
+          <div class="exp-org">Techolution · Hyderabad</div>
+          <ul class="exp-pts">
+            <li>Shipped Ask Alice, the LLM-powered robotic bartender (ROS, GCP Pub/Sub, FastAPI)</li>
+            <li>Built ScrewQC — vision-guided screw inspection at 0.01 mm precision</li>
+          </ul>
+        </div>
+      </div>
+      <div class="exp">
+        <span class="exp-when">May 2023 – Dec 2023</span>
+        <div class="exp-info">
+          <div class="exp-role">Robotics Software Engineering Intern</div>
+          <div class="exp-org">SS Innovations · Hyderabad (surgical robotics)</div>
+          <ul class="exp-pts">
+            <li>EtherCAT communication for motors and sensors; Beckhoff controllers and Harmonic drives</li>
+            <li>Machine vision with TensorFlow + OpenCV, built to ISO 13485 / FDA requirements</li>
+          </ul>
+          <button class="exp-watch" data-title="SS Innovations — surgical robotics" data-clips="surgical-intern">watch ▶</button>
+        </div>
+      </div>
+      <div class="exp">
+        <span class="exp-when">Jun 2022 – Jul 2022</span>
+        <div class="exp-info">
+          <div class="exp-role">Robotics Design Intern</div>
+          <div class="exp-org">SEGRITECH · Atal Incubation Centre, IIIT Hyderabad</div>
+          <ul class="exp-pts">
+            <li>Designed an automatic fruit &amp; vegetable sorter to cut 25–30% post-harvest loss</li>
+            <li>24 fps vision model grading size, shape, colour and ripeness; SolidWorks + Raspberry Pi + Arduino</li>
+          </ul>
+          <button class="exp-watch" data-title="SEGRITECH — automatic sorter" data-clips="design-intern">watch ▶</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /pro-only -->
+
+  <!-- ═══════════════ PERSONAL ═══════════════ -->
+  <div class="personal-only">
+
+    <div class="pers-about">
+      <div class="card-h">The off-duty me</div>
+      <p class="card-p">My life is more like a Telugu film — full drama, half emotions, konchem comedy, inkoncham confusion. But somehow the hero still survives. I fell in love with robots because of cartoon gadgets, still doodle weird machines in notebooks, noodle on guitar when the solder fumes get thick, and rewatch Doraemon for the gadget-of-the-week inspiration.</p>
+    </div>
+
+    <div class="sh">Stuff I love ♡</div>
+    <div class="loves">
+      <div class="love">
+        <div class="love-icon">📺</div>
+        <div class="love-title">Classic cartoons</div>
+        <p class="love-desc">Doraemon's gadget-of-the-week episodes are basically my product roadmap. Each one is a tiny speculative design brief.</p>
+      </div>
+      <div class="love">
+        <div class="love-icon">✏️</div>
+        <div class="love-title">Sketching gizmos</div>
+        <p class="love-desc">Notebooks full of machines that will never (and should never) exist. The sketching is the point, not the building.</p>
+      </div>
+      <div class="love">
+        <div class="love-icon">🎸</div>
+        <div class="love-title">Guitar</div>
+        <p class="love-desc">Strumming chords when the solder fumes get thick. Debugging a tricky riff hits different than debugging code.</p>
+      </div>
+      <div class="love">
+        <div class="love-icon">🛠️</div>
+        <div class="love-title">Weekend builds</div>
+        <p class="love-desc">Soldering small delightful robots that do one silly thing well. The sillier the better — utility is overrated.</p>
+      </div>
+    </div>
+
+    <div class="sh">Doodle wall ✏️</div>
+    <div class="doodles">
+      <div class="doodle">
+        <div class="doodle-img"><span>gadget doodle</span></div>
+        <div class="doodle-caption">memory eraser</div>
+      </div>
+      <div class="doodle">
+        <div class="doodle-img"><span>robot sketch</span></div>
+        <div class="doodle-caption">lil helper bot</div>
+      </div>
+      <div class="doodle">
+        <div class="doodle-img"><span>comic panel</span></div>
+        <div class="doodle-caption">4-koma idea</div>
+      </div>
+      <div class="doodle">
+        <div class="doodle-img"><span>sticker</span></div>
+        <div class="doodle-caption">beep boop!</div>
+      </div>
+    </div>
+
+    <div class="right-now">
+      <div class="sh">Right now I'm...</div>
+      <ul>
+        <li>Re-watching Doraemon — always good for gadget inspiration</li>
+        <li>Training a dexterous robot hand in Isaac Lab (64% success and climbing 🔥)</li>
+        <li>Learning to draw expressive robot faces</li>
+        <li>Getting better at guitar one chord at a time 🎸</li>
+      </ul>
+    </div>
+
+  </div><!-- /personal-only -->
+
+  <!-- ═══════════════ WHY DORAEMON ═══════════════ -->
+  <section id="why">
+    <div class="why-kicker">// so… why the blue robot cat?</div>
+    <h2 class="why-h">Because the best engineers <em>never stop being kids.</em></h2>
+    <p class="why-p">Every Doraemon episode runs the same loop: someone has a problem, a gadget comes out of the pocket, things go hilariously wrong, and everyone learns something. That's honestly my job description.</p>
+    <p class="why-p">Kids ask "what if?" without worrying if it's a silly question. They take things apart just to see what's inside. They believe a robot can be your best friend. I try hard to never grow out of that — it's the part of me that actually builds things.</p>
+    <div class="gadgets">
+      <div class="gadget">
+        <span class="gadget-name">🚪 Anywhere Door</span>
+        <span class="gadget-arrow">→ became</span>
+        <span class="gadget-real">Teleoperation — be there without being there</span>
+      </div>
+      <div class="gadget">
+        <span class="gadget-name">👯 Copy Robot</span>
+        <span class="gadget-arrow">→ became</span>
+        <span class="gadget-real">Real2Sim — a digital twin of the robot</span>
+      </div>
+      <div class="gadget">
+        <span class="gadget-name">🍮 Translation Konjac</span>
+        <span class="gadget-arrow">→ became</span>
+        <span class="gadget-real">Alice — a robot you can just talk to</span>
+      </div>
+      <div class="gadget">
+        <span class="gadget-name">⏳ Time Room</span>
+        <span class="gadget-arrow">→ became</span>
+        <span class="gadget-real">Isaac Lab — years of practice in an afternoon</span>
+      </div>
+    </div>
+    <div class="why-sign">Stay curious. Stay a little childish. Keep the pocket full. ✦</div>
+  </section>
+
+  <!-- ═══════════════ CONTACT ═══════════════ -->
+  <section id="contact">
+    <div class="contact-h">Let's build something fun</div>
+    <p class="contact-sub">Robotics gig, a collab, or just to argue about Doraemon gadgets — I'm in.</p>
+    <div class="contact-links">
+      <a href="mailto:sakethsandeep405@gmail.com" class="btn btn-dark">sakethsandeep405@gmail.com</a>
+      <a href="https://github.com/sakethvaishya"           class="btn btn-white" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/saketh-vaishya/"      class="btn btn-white" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+    <div class="footer-note">made with bolts, code &amp; a little nostalgia ✦</div>
+  </section>
+
+</main>
+
+<!-- ═══════════════ VIDEO LIGHTBOX ═══════════════ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-title">
+  <div class="lb-box">
+    <div class="lb-top">
+      <div class="lb-title" id="lb-title"></div>
+      <button class="lb-close" onclick="closeLightbox()" aria-label="Close video">✕</button>
+    </div>
+    <video id="lb-video" controls playsinline></video>
+    <div class="lb-clips" id="lb-clips"></div>
+  </div>
+</div>
+
+<script>
+  function setMode(mode) {
+    document.body.classList.toggle('personal-mode', mode === 'personal');
+    document.getElementById('btn-pro').setAttribute('aria-pressed', String(mode === 'pro'));
+    document.getElementById('btn-personal').setAttribute('aria-pressed', String(mode === 'personal'));
+  }
+
+  function toggleProjects() {
+    const grid = document.getElementById('projects');
+    const btn = document.getElementById('more-btn');
+    const open = grid.classList.toggle('show-all');
+    btn.setAttribute('aria-expanded', String(open));
+    btn.textContent = open ? 'Put them back in the pocket ↑' : 'Pull more gadgets from the pocket ↓';
+    if (open) watchPreviews();
+  }
+
+  // Card previews: muted loops that load and play only while on screen
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const previewObserver = new IntersectionObserver(entries => {
+    entries.forEach(({ target: v, isIntersecting }) => {
+      if (isIntersecting) {
+        if (!v.src) v.src = v.dataset.src;
+        if (!reduceMotion) v.play().catch(() => {});
+      } else {
+        v.pause();
+      }
+    });
+  }, { rootMargin: '120px' });
+  function watchPreviews() {
+    document.querySelectorAll('.pthumb video').forEach(v => {
+      if (v.offsetParent) previewObserver.observe(v);
+    });
+  }
+  watchPreviews();
+
+  // Lightbox: full video with sound + controls, with clip switcher
+  const lb = document.getElementById('lightbox');
+  const lbVideo = document.getElementById('lb-video');
+  const lbClips = document.getElementById('lb-clips');
+  let lastFocus = null;
+
+  function playClip(name, btn) {
+    lbVideo.poster = `assets/videos/${name}.jpg`;
+    lbVideo.src = `assets/videos/${name}.mp4`;
+    lbVideo.play().catch(() => {});
+    lbClips.querySelectorAll('.lb-clip').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+  }
+
+  function openLightbox(title, clips) {
+    lastFocus = document.activeElement;
+    document.getElementById('lb-title').textContent = title;
+    lbClips.innerHTML = '';
+    clips.forEach((name, i) => {
+      const b = document.createElement('button');
+      b.className = 'lb-clip';
+      b.textContent = `clip ${i + 1}`;
+      b.onclick = () => playClip(name, b);
+      lbClips.appendChild(b);
+    });
+    lbClips.style.display = clips.length > 1 ? 'flex' : 'none';
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    playClip(clips[0], lbClips.firstChild);
+    lb.querySelector('.lb-close').focus();
+  }
+
+  function closeLightbox() {
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    lbVideo.load();
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    if (lastFocus) lastFocus.focus();
+  }
+
+  document.querySelectorAll('[data-clips]').forEach(el => {
+    el.addEventListener('click', () => openLightbox(el.dataset.title, el.dataset.clips.split(',')));
+  });
+  lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && lb.classList.contains('open')) closeLightbox(); });
+</script>
+</body>
+</html>
