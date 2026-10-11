@@ -128,30 +128,6 @@
     }
     nav.links a:hover::after, nav.links a.active::after { transform: scaleX(1); }
 
-    /* ── Mode Toggle ── */
-    .mode-toggle {
-      position: relative; display: flex; align-items: center; padding: 5px; flex: 0 0 auto;
-      background: var(--blue); border: 2.5px solid var(--navy);
-      border-radius: 999px; box-shadow: 3px 3px 0 var(--navy);
-    }
-    .toggle-thumb {
-      position: absolute; top: 5px; left: 5px;
-      width: calc(50% - 5px); height: calc(100% - 10px);
-      background: var(--white); border: 2px solid var(--navy);
-      border-radius: 999px; pointer-events: none;
-      transition: transform .32s var(--ease-pop);
-    }
-    body.personal-mode .toggle-thumb { transform: translateX(100%); }
-    .toggle-btn {
-      position: relative; z-index: 1; border: none; background: transparent;
-      cursor: pointer; font-weight: 800; font-size: 15px; color: var(--navy);
-      padding: 8px clamp(12px,2.6vw,22px); border-radius: 999px; min-height: 40px;
-    }
-
-    /* ── Mode visibility ── */
-    body.personal-mode .pro-only { display: none !important; }
-    body:not(.personal-mode) .personal-only { display: none !important; }
-
     /* ── Hero ── */
     #hero {
       display: grid; grid-template-columns: 1.08fr 1fr; align-items: center;
@@ -237,26 +213,6 @@
       border: 2.5px solid var(--navy); border-radius: 12px; padding: 4px 12px; box-shadow: 3px 3px 0 var(--navy);
       transform: rotate(-4deg); white-space: nowrap;
     }
-
-    /* ── Mascot (SVG) ── */
-    .mascot-wrap { position: relative; padding-top: 30px; animation: floaty 5s ease-in-out infinite; }
-    .mascot { width: clamp(220px,30vw,290px); height: auto; overflow: visible; }
-    .mascot .prop { transform-box: fill-box; transform-origin: center; animation: spin-prop .22s linear infinite; }
-    .mascot .bell-g { transform-box: fill-box; transform-origin: 50% 0; cursor: pointer; }
-    .mascot .bell-g.ring { animation: ring .7s ease; }
-    .bubble {
-      position: absolute; top: 0; left: 62%; z-index: 3;
-      background: var(--white); border: 2.5px solid var(--navy);
-      border-radius: 16px; box-shadow: 3px 3px 0 var(--navy);
-      padding: 8px 14px; font-family: 'Patrick Hand', cursive;
-      font-size: 18px; white-space: nowrap; cursor: pointer; user-select: none;
-    }
-    .bubble::after {
-      content: ""; position: absolute; left: 18px; bottom: -11px; width: 16px; height: 16px;
-      background: var(--white); border-right: 2.5px solid var(--navy); border-bottom: 2.5px solid var(--navy);
-      transform: rotate(45deg);
-    }
-    .bell-tip { text-align: center; font-family: 'Patrick Hand', cursive; font-size: 16px; color: #8a7c5d; margin-top: 18px; }
 
     /* ── Section heads ── */
     .kicker {
@@ -472,56 +428,6 @@
     }
     .now-pill { display: inline-block; font-family: 'Space Mono', monospace; font-size: 10px; font-weight: 700; background: var(--green); border: 2px solid var(--navy); border-radius: 999px; padding: 1px 7px; margin-left: 6px; vertical-align: 2px; }
 
-    /* ── Personal ── */
-    .pers-about {
-      background: var(--yellow); border: 2.5px solid var(--navy);
-      border-radius: 22px; box-shadow: 6px 6px 0 var(--navy);
-      padding: clamp(22px,4vw,36px); position: relative; overflow: hidden;
-    }
-    .pers-about .card-p { color: #5a4410; font-weight: 700; position: relative; }
-    .pers-about::after {
-      content: "♪ ♫"; position: absolute; right: 18px; top: 8px; font-size: 44px; opacity: .25; transform: rotate(12deg);
-    }
-    .loves { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 18px; }
-    .love {
-      background: var(--white); border: 2.5px solid var(--navy);
-      border-radius: 18px; box-shadow: 5px 5px 0 var(--navy); padding: 20px;
-      display: flex; flex-direction: column; gap: 8px; transition: transform .2s var(--ease-pop);
-    }
-    .love:hover { transform: translateY(-4px) rotate(-1deg); }
-    .love-icon {
-      width: 54px; height: 54px; border-radius: 15px; background: var(--blue);
-      border: 2.5px solid var(--navy); display: flex; align-items: center;
-      justify-content: center; font-size: 27px;
-    }
-    .love:hover .love-icon { animation: wiggle .5s ease; }
-    .love-title { font-weight: 900; font-size: 18px; margin-top: 4px; }
-    .love-desc  { font-size: 15px; line-height: 1.5; font-weight: 600; color: var(--ink-3); }
-
-    .doodles { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 26px; }
-    .doodle {
-      background: var(--white); border: 2.5px solid var(--navy); position: relative;
-      box-shadow: 4px 4px 0 var(--navy); padding: 10px 10px 30px; transform: rotate(var(--r, 0deg));
-      transition: transform .3s var(--ease-pop), box-shadow .3s;
-    }
-    .doodle::before {
-      content: ""; position: absolute; top: -12px; left: 50%; width: 76px; height: 22px; margin-left: -38px;
-      background: rgba(255,201,60,.75); border: 1.5px solid rgba(22,49,75,.25); transform: rotate(-3deg);
-    }
-    .doodle:hover { transform: rotate(0) scale(1.05); box-shadow: 8px 9px 0 var(--navy); z-index: 2; }
-    .doodle img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border: 2px solid var(--navy); }
-    .doodle-caption { font-family: 'Patrick Hand', cursive; text-align: center; margin-top: 10px; font-size: 19px; }
-
-    .right-now {
-      background: var(--blue); border: 2.5px solid var(--navy);
-      border-radius: 22px; box-shadow: 6px 6px 0 var(--navy);
-      padding: clamp(22px,4vw,36px); color: var(--white);
-    }
-    .right-now .card-h { color: var(--white); }
-    .right-now ul { list-style: none; display: grid; gap: 12px; margin-top: 12px; }
-    .right-now li { display: flex; gap: 12px; align-items: flex-start; font-size: 17px; line-height: 1.5; font-weight: 700; }
-    .right-now li span { flex: 0 0 auto; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 10px; background: var(--white); border: 2px solid var(--navy); font-size: 17px; }
-
     /* ── Why Doraemon ── */
     #why {
       background: var(--white); border: 2.5px solid var(--navy);
@@ -601,30 +507,6 @@
     }
     .buddy:hover .buddy-tip, .buddy:focus-visible .buddy-tip { opacity: 1; transform: none; }
 
-    /* ── Anywhere Door transition ── */
-    .door-fx { position: fixed; inset: 0; z-index: 200; display: none; place-items: center; background: rgba(22,49,75,.55); pointer-events: none; }
-    .door-fx.run { display: grid; animation: fade-out .35s ease 1s forwards; }
-    @keyframes fade-out { to { opacity: 0; } }
-    .door-frame {
-      width: 170px; height: 270px; position: relative; perspective: 700px;
-      border: 4px solid var(--navy); border-radius: 16px 16px 4px 4px;
-      background: radial-gradient(circle at 50% 55%, #fff 0, #fff7d1 45%, var(--yellow) 100%);
-      animation: door-in .28s var(--ease-pop) both, door-zoom .45s ease-in .66s forwards;
-    }
-    .door-panel {
-      position: absolute; inset: -4px; background: var(--pink); border: 4px solid var(--navy); border-radius: 16px 16px 4px 4px;
-      transform-origin: left center; animation: door-open .42s cubic-bezier(.5,0,.3,1) .26s forwards;
-      box-shadow: inset -10px 0 0 rgba(0,0,0,.08);
-    }
-    .door-panel::before { content: ""; position: absolute; inset: 18px 16px; border: 3px solid rgba(22,49,75,.35); border-radius: 10px; }
-    .door-panel .knob { position: absolute; right: 18px; top: 52%; width: 18px; height: 18px; border-radius: 50%; background: var(--yellow); border: 3px solid var(--navy); }
-    @keyframes door-in { from { transform: scale(.4) translateY(40px); opacity: 0; } }
-    @keyframes door-open { to { transform: rotateY(-108deg); } }
-    @keyframes door-zoom { to { transform: scale(14); } }
-
-    /* dorayaki rain */
-    .dorayaki { position: fixed; top: -60px; z-index: 150; width: 46px; height: 32px; pointer-events: none; }
-
     /* ── Responsive ── */
     @media (max-width: 900px) {
       #hero { grid-template-columns: 1fr; }
@@ -637,12 +519,9 @@
     @media (max-width: 560px) {
       .pipeline { grid-template-columns: 1fr; }
       .projects { grid-template-columns: 1fr; }
-      .doodles  { grid-template-columns: repeat(2,1fr); gap: 18px; }
       .logo-name { font-size: 24px; }
-      .logo-text { display: none; }
       .role-badge { font-size: 11.5px; }
       .logo-mark { width: 38px; height: 38px; }
-      .toggle-btn { font-size: 14px; padding: 8px 11px; }
       .tl { padding-left: 0; }
       .tl-line { display: none; }
       .exp-logo { position: static; width: 46px; height: 46px; margin-bottom: 10px; font-size: 11px; }
@@ -708,19 +587,12 @@
     </span>
   </a>
   <nav class="links" aria-label="Sections">
-    <a href="#sim-lab" class="pro-only">Sim Lab</a>
-    <a href="#work" class="pro-only">Work</a>
-    <a href="#journey" class="pro-only">Journey</a>
-    <a href="#off-duty" class="personal-only">Me</a>
-    <a href="#doodles" class="personal-only">Doodles</a>
+    <a href="#sim-lab">Sim Lab</a>
+    <a href="#work">Work</a>
+    <a href="#journey">Journey</a>
     <a href="#why">Why Doraemon</a>
     <a href="#contact">Contact</a>
   </nav>
-  <div class="mode-toggle" role="group" aria-label="Switch portfolio mode">
-    <div class="toggle-thumb" aria-hidden="true"></div>
-    <button class="toggle-btn" id="btn-pro"      data-mode="pro"      aria-pressed="true">Professional</button>
-    <button class="toggle-btn" id="btn-personal" data-mode="personal" aria-pressed="false">Personal</button>
-  </div>
   <div class="progress" id="progress" aria-hidden="true"></div>
 </header>
 
@@ -732,8 +604,8 @@
       <span class="spark" style="left:-14px;top:-18px" aria-hidden="true">✦</span>
       <span class="spark" style="right:8%;top:28%;animation-delay:.9s;font-size:20px" aria-hidden="true">✦</span>
 
-      <!-- Professional hero copy -->
-      <div class="pro-only">
+      <!-- Hero copy -->
+      <div>
         <div class="role-badge"><span class="live" aria-hidden="true"></span>// robotics simulation engineer @ Origin</div>
         <h1 class="hero-h1" aria-label="Hi, I'm Saketh — I build worlds where robots learn.">
           <span aria-hidden="true"><span class="nw">Hi, I'm Saketh —</span><br>I build worlds<br>where robots <span class="hl" id="rotator">learn.</span><span class="caret"></span></span>
@@ -741,21 +613,13 @@
         <p class="hero-tagline">I'm a <b>simulation engineer</b>. I build the digital twins, physics scenes and training pipelines in <b>NVIDIA Isaac Sim &amp; Isaac Lab</b> where robots rack up years of practice overnight — then I carry what they learned onto real hardware. Sim-to-real, end to end.</p>
       </div>
 
-      <!-- Personal hero copy -->
-      <div class="personal-only">
-        <div class="role-badge" style="background:var(--yellow);color:var(--navy)">// off the clock ✦</div>
-        <h1 class="hero-h1"><span class="nw">Hi, I'm Saketh —</span><br>part engineer,<br><span class="hl">part cartoon.</span></h1>
-        <p class="hero-tagline">Grew up on Doraemon, wanted a pocket full of gadgets, became the guy who builds them. Off duty I doodle weird machines, strum guitar and re-watch the cartoons that started it all.</p>
-      </div>
-
       <div class="ctas">
-        <a href="#work" class="btn btn-blue pro-only">See the work ↓</a>
-        <a href="#doodles" class="btn btn-blue personal-only">See the doodles ✏️</a>
+        <a href="#work" class="btn btn-blue">See the work ↓</a>
         <a href="#contact" class="btn btn-yellow">Say hi ✦</a>
         <a href="assets/resume.pdf" class="btn btn-white" id="resume-btn" download hidden>Résumé ↓</a>
       </div>
 
-      <div class="stats pro-only" aria-label="Quick stats">
+      <div class="stats" aria-label="Quick stats">
         <div class="stat"><div class="stat-n"><span data-count="3">3</span>+</div><div class="stat-l">years shipping robots</div></div>
         <div class="stat"><div class="stat-n" data-count="12">12</div><div class="stat-l">robots &amp; sims built</div></div>
         <div class="stat"><div class="stat-n">0.01<small style="font-size:.55em">mm</small></div><div class="stat-l">vision precision</div></div>
@@ -764,7 +628,7 @@
 
     <div class="hero-visual">
       <!-- Professional: live mini simulation -->
-      <div class="pro-only sim-holder">
+      <div class="sim-holder">
         <div class="sim-hint" aria-hidden="true">move your cursor — it'll chase it!</div>
         <div class="sim-win">
           <div class="sim-bar" aria-hidden="true">
@@ -782,51 +646,11 @@
         </div>
       </div>
 
-      <!-- Personal: robot-cat mascot with take-copter -->
-      <div class="personal-only">
-        <div class="mascot-wrap">
-          <div class="bubble" id="bubble" role="button" tabindex="0">Yay, the fun side! ✦</div>
-          <svg class="mascot" id="mascot" viewBox="0 0 240 310" aria-label="A blue robot-cat mascot flying with a propeller hat">
-            <!-- take-copter -->
-            <rect x="115" y="14" width="10" height="24" rx="3" fill="#FFC93C" stroke="#16314B" stroke-width="3"/>
-            <ellipse class="prop" cx="120" cy="12" rx="54" ry="7" fill="#FFC93C" stroke="#16314B" stroke-width="3"/>
-            <!-- body -->
-            <path d="M64 190 Q56 268 78 290 H162 Q184 268 176 190 Z" fill="#1F9FE0" stroke="#16314B" stroke-width="4"/>
-            <ellipse cx="120" cy="246" rx="44" ry="38" fill="#fff" stroke="#16314B" stroke-width="3"/>
-            <path d="M90 240 Q120 276 150 240 Z" fill="#fff" stroke="#16314B" stroke-width="3" stroke-linejoin="round"/>
-            <circle cx="50" cy="236" r="16" fill="#fff" stroke="#16314B" stroke-width="3.5"/>
-            <circle cx="190" cy="236" r="16" fill="#fff" stroke="#16314B" stroke-width="3.5"/>
-            <ellipse cx="94" cy="294" rx="28" ry="11" fill="#fff" stroke="#16314B" stroke-width="3.5"/>
-            <ellipse cx="146" cy="294" rx="28" ry="11" fill="#fff" stroke="#16314B" stroke-width="3.5"/>
-            <!-- head -->
-            <circle cx="120" cy="114" r="84" fill="#1F9FE0" stroke="#16314B" stroke-width="4"/>
-            <ellipse cx="120" cy="134" rx="66" ry="58" fill="#fff" stroke="#16314B" stroke-width="3"/>
-            <ellipse cx="103" cy="76" rx="17" ry="21" fill="#fff" stroke="#16314B" stroke-width="3"/>
-            <ellipse cx="137" cy="76" rx="17" ry="21" fill="#fff" stroke="#16314B" stroke-width="3"/>
-            <circle id="pl" cx="107" cy="80" r="5.5" fill="#16314B"/>
-            <circle id="pr" cx="133" cy="80" r="5.5" fill="#16314B"/>
-            <circle cx="120" cy="102" r="10" fill="#E94B3C" stroke="#16314B" stroke-width="3"/>
-            <circle cx="116" cy="98" r="3" fill="#fff"/>
-            <path d="M120 112 V150" stroke="#16314B" stroke-width="3" stroke-linecap="round"/>
-            <path d="M80 140 Q120 192 160 140" fill="none" stroke="#16314B" stroke-width="3.5" stroke-linecap="round"/>
-            <path d="M58 112 L92 120 M54 130 H90 M58 148 L92 140 M182 112 L148 120 M186 130 H150 M182 148 L148 140" stroke="#16314B" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- collar + bell -->
-            <rect x="52" y="186" width="136" height="14" rx="7" fill="#E94B3C" stroke="#16314B" stroke-width="3"/>
-            <g class="bell-g" id="bell" role="button" tabindex="0" aria-label="Ring the bell">
-              <circle cx="120" cy="210" r="15" fill="#FFC93C" stroke="#16314B" stroke-width="3"/>
-              <path d="M106 206 H134" stroke="#16314B" stroke-width="2.5"/>
-              <circle cx="120" cy="214" r="3.2" fill="#16314B"/>
-              <path d="M120 217 V224" stroke="#16314B" stroke-width="2.5"/>
-            </g>
-          </svg>
-          <div class="bell-tip">psst — ring the bell 🔔</div>
-        </div>
-      </div>
     </div>
   </section>
 
   <!-- ═══════════════ PROFESSIONAL ═══════════════ -->
-  <div class="pro-only">
+  <div>
 
     <!-- Toolbox -->
     <section id="toolbox" class="reveal">
@@ -1200,85 +1024,7 @@
       </div>
     </section>
 
-  </div><!-- /pro-only -->
-
-  <!-- ═══════════════ PERSONAL ═══════════════ -->
-  <div class="personal-only">
-
-    <section id="off-duty">
-      <div class="pers-about reveal">
-        <div class="card-h">The off-duty me</div>
-        <p class="card-p">My life is more like a Telugu film — full drama, half emotions, konchem comedy, inkoncham confusion. But somehow the hero still survives. I fell in love with robots because of cartoon gadgets, still doodle weird machines in notebooks, noodle on guitar when the solder fumes get thick, and rewatch Doraemon for the gadget-of-the-week inspiration.</p>
-      </div>
-    </section>
-
-    <section>
-      <div class="reveal">
-        <div class="kicker">// things that keep me going</div>
-        <h2 class="sh">Stuff I love ♡<svg class="squiggle" viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M2 8 Q40 0 78 8 T154 8 T230 8 T298 6"/></svg></h2>
-      </div>
-      <div class="loves" style="margin-top:28px">
-        <div class="love reveal">
-          <div class="love-icon">📺</div>
-          <div class="love-title">Classic cartoons</div>
-          <p class="love-desc">Doraemon's gadget-of-the-week episodes are basically my product roadmap. Each one is a tiny speculative design brief.</p>
-        </div>
-        <div class="love reveal" style="--d:.08s">
-          <div class="love-icon" style="background:var(--yellow)">✏️</div>
-          <div class="love-title">Sketching gizmos</div>
-          <p class="love-desc">Notebooks full of machines that will never (and should never) exist. The sketching is the point, not the building.</p>
-        </div>
-        <div class="love reveal" style="--d:.16s">
-          <div class="love-icon" style="background:var(--pink)">🎸</div>
-          <div class="love-title">Guitar</div>
-          <p class="love-desc">Strumming chords when the solder fumes get thick. Debugging a tricky riff hits different than debugging code.</p>
-        </div>
-        <div class="love reveal" style="--d:.24s">
-          <div class="love-icon" style="background:var(--green)">🛠️</div>
-          <div class="love-title">Weekend builds</div>
-          <p class="love-desc">Soldering small delightful robots that do one silly thing well. The sillier the better — utility is overrated.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="doodles">
-      <div class="reveal">
-        <div class="kicker">// straight out of the notebook</div>
-        <h2 class="sh">Doodle wall ✏️<svg class="squiggle" viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M2 8 Q40 0 78 8 T154 8 T230 8 T298 6"/></svg></h2>
-      </div>
-      <div class="doodles" style="margin-top:36px">
-        <figure class="doodle reveal" style="--r:-3deg">
-          <img src="assets/img/doodle-memory-eraser.webp" alt="Sketch of a memory-eraser gadget" loading="lazy" width="520" height="520">
-          <figcaption class="doodle-caption">memory eraser</figcaption>
-        </figure>
-        <figure class="doodle reveal" style="--r:2deg;--d:.08s">
-          <img src="assets/img/doodle-helper-bot.webp" alt="Sketch of a little helper robot waving hello" loading="lazy" width="520" height="520">
-          <figcaption class="doodle-caption">lil helper bot</figcaption>
-        </figure>
-        <figure class="doodle reveal" style="--r:-1.5deg;--d:.16s">
-          <img src="assets/img/doodle-comic-panel.webp" alt="Four-panel comic: a tiny robot tries to help and causes chaos" loading="lazy" width="520" height="520">
-          <figcaption class="doodle-caption">4-koma: small bot, big chaos</figcaption>
-        </figure>
-        <figure class="doodle reveal" style="--r:3deg;--d:.24s">
-          <img src="assets/img/doodle-sticker-beep.webp" alt="Robot sticker saying beep boop" loading="lazy" width="520" height="520">
-          <figcaption class="doodle-caption">beep boop!</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section>
-      <div class="right-now reveal">
-        <div class="card-h">Right now I'm...</div>
-        <ul>
-          <li><span>📺</span>Re-watching Doraemon — always good for gadget inspiration</li>
-          <li><span>🤖</span>Training a dexterous robot hand in Isaac Lab (64% success and climbing 🔥)</li>
-          <li><span>✏️</span>Learning to draw expressive robot faces</li>
-          <li><span>🎸</span>Getting better at guitar one chord at a time</li>
-        </ul>
-      </div>
-    </section>
-
-  </div><!-- /personal-only -->
+  </div><!-- /professional -->
 
   <!-- ═══════════════ WHY DORAEMON ═══════════════ -->
   <section id="why" class="reveal">
@@ -1342,11 +1088,6 @@
   </svg>
 </button>
 
-<!-- ═══════════════ ANYWHERE DOOR ═══════════════ -->
-<div class="door-fx" id="door-fx" aria-hidden="true">
-  <div class="door-frame"><div class="door-panel"><span class="knob"></span></div></div>
-</div>
-
 <!-- ═══════════════ VIDEO LIGHTBOX ═══════════════ -->
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lb-title">
   <div class="lb-box">
@@ -1363,29 +1104,6 @@
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const $ = (s, el = document) => el.querySelector(s);
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
-
-  /* ── Mode switch (through the Anywhere Door) ── */
-  function applyMode(mode) {
-    document.body.classList.toggle('personal-mode', mode === 'personal');
-    $('#btn-pro').setAttribute('aria-pressed', String(mode === 'pro'));
-    $('#btn-personal').setAttribute('aria-pressed', String(mode === 'personal'));
-    try { localStorage.setItem('sv-mode', mode); } catch (e) {}
-    revealAll();
-    watchPreviews();
-    sim.resize();
-  }
-  let doorBusy = false;
-  function setMode(mode) {
-    const current = document.body.classList.contains('personal-mode') ? 'personal' : 'pro';
-    if (mode === current || doorBusy) return;
-    if (reduceMotion) { applyMode(mode); return; }
-    doorBusy = true;
-    const fx = $('#door-fx');
-    fx.classList.remove('run'); void fx.offsetWidth; fx.classList.add('run');
-    setTimeout(() => { applyMode(mode); window.scrollTo({ top: 0, behavior: 'instant' }); }, 900);
-    setTimeout(() => { fx.classList.remove('run'); doorBusy = false; }, 1400);
-  }
-  $$('.toggle-btn').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
 
   /* ── Scroll reveal ── */
   const revealObserver = new IntersectionObserver(entries => {
@@ -1548,48 +1266,6 @@
 
   /* ── Gadget flip cards (tap on touch screens) ── */
   $$('.gadget').forEach(g => g.addEventListener('click', () => g.classList.toggle('flipped')));
-
-  /* ── Mascot: eyes follow the pointer, bubble chatter, bell → dorayaki ── */
-  (function mascot() {
-    const svg = $('#mascot'), pl = $('#pl'), pr = $('#pr'), bubble = $('#bubble'), bell = $('#bell');
-    const lines = ['Yay, the fun side! ✦', 'Want a dorayaki? 🥞', 'Ring my bell! 🔔', 'Beep — off duty mode!', 'Gadget time ✦'];
-    let li = 0;
-    function chatter() { li = (li + 1) % lines.length; bubble.textContent = lines[li]; }
-    bubble.addEventListener('click', chatter);
-    bubble.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); chatter(); } });
-    addEventListener('pointermove', e => {
-      if (!svg.getBoundingClientRect().width) return;
-      const r = svg.getBoundingClientRect();
-      const cx = r.left + r.width / 2, cy = r.top + r.height * .26;
-      const a = Math.atan2(e.clientY - cy, e.clientX - cx);
-      const d = Math.min(1, Math.hypot(e.clientX - cx, e.clientY - cy) / 300) * 6;
-      const dx = Math.cos(a) * d, dy = Math.sin(a) * d * 1.2;
-      pl.setAttribute('cx', 103 + dx); pl.setAttribute('cy', 78 + dy);
-      pr.setAttribute('cx', 137 + dx); pr.setAttribute('cy', 78 + dy);
-    }, { passive: true });
-
-    const dorayakiSVG = '<svg viewBox="0 0 46 32" class="dorayaki" aria-hidden="true"><ellipse cx="23" cy="20" rx="21" ry="9" fill="#C77A2E" stroke="#16314B" stroke-width="2.5"/><rect x="3" y="14" width="40" height="5" rx="2.5" fill="#6B2E1F" stroke="#16314B" stroke-width="2"/><ellipse cx="23" cy="12" rx="21" ry="9" fill="#E09A4A" stroke="#16314B" stroke-width="2.5"/><ellipse cx="17" cy="9" rx="6" ry="2" fill="#F2C27E"/></svg>';
-    function ring() {
-      bell.classList.remove('ring'); void bell.getBBox(); bell.classList.add('ring');
-      bubble.textContent = 'Dorayaki party! 🥞';
-      if (reduceMotion) return;
-      for (let k = 0; k < 16; k++) {
-        const holder = document.createElement('div');
-        holder.innerHTML = dorayakiSVG;
-        const d = holder.firstChild;
-        d.style.left = (Math.random() * 96) + 'vw';
-        document.body.appendChild(d);
-        const spin = (Math.random() - .5) * 720;
-        d.animate([
-          { transform: `translateY(0) rotate(0deg)` },
-          { transform: `translateY(${innerHeight + 120}px) rotate(${spin}deg)` }
-        ], { duration: 1600 + Math.random() * 1400, delay: Math.random() * 500, easing: 'cubic-bezier(.4,0,.8,.6)', fill: 'forwards' })
-          .onfinish = () => d.remove();
-      }
-    }
-    bell.addEventListener('click', ring);
-    bell.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); ring(); } });
-  })();
 
   /* ── Hero mini simulation: 2-link arm with analytic IK, goals, particles ── */
   const sim = (function () {
@@ -1795,10 +1471,8 @@
   })();
 
   /* ── Boot ── */
-  let saved = 'pro';
-  try { saved = localStorage.getItem('sv-mode') || 'pro'; } catch (e) {}
-  if (location.hash === '#personal') saved = 'personal';
-  if (saved === 'personal') applyMode('personal'); else { revealAll(); watchPreviews(); }
+  revealAll();
+  watchPreviews();
   onScroll();
 </script>
 </body>
